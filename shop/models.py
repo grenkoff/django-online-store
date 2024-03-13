@@ -51,8 +51,8 @@ class Category(models.Model):
             self.slug = slugify(rand_slug() + '-pickBetter' + self.name)
         super(Category, self).save(*args, **kwargs)
     
-    # def get_absolute_url(self):
-    #     return reverse("model_detail", kwargs={"pk": self.pk})
+    def get_absolute_url(self):
+        return reverse("shop:category-list", args=[str(self.slug)])
     
 class Product(models.Model):
     """
@@ -76,8 +76,8 @@ class Product(models.Model):
     def __str__(self):
         return self.title
     
-    # def get_absolute_url(self):
-    #     return reverse("model_detail", kwargs={"pk": self.pk})
+    def get_absolute_url(self):
+        return reverse("shop:product-detail", args=[str(self.slug)])
 
 
 class ProductManager(models.Manager):
